@@ -85,7 +85,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       );
     }
 
-    Widget child =  flushbar.isDismissible
+    Widget child = flushbar.isDismissible
         ? _getDismissibleFlushbar(_builder)
         : _getFlushbar();
 
@@ -210,9 +210,13 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   }
 
   Widget _getFlushbar() {
-    return Container(
-      margin: flushbar.margin,
-      child: _builder,
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => flushbar.onTap?.call(flushbar),
+      child: Container(
+        margin: flushbar.margin,
+        child: _builder,
+      ),
     );
   }
 

@@ -60,6 +60,15 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: [
+          FloatingActionButton(
+            onPressed: () async {
+              print('heelo');
+            },
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -90,10 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Flushbar(
+            flushbarPosition: FlushbarPosition.TOP,
             title: 'Hey Ninja',
             message:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
             duration: Duration(seconds: 3),
+            routeBlur: .7,
+            blockBackgroundInteraction: false,
+            margin: EdgeInsets.only(top: 115),
           ).show(context);
         },
         tooltip: 'Increment',
